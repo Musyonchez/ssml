@@ -2,26 +2,23 @@
 import React, { useState } from 'react';
 import AudioPlayer from './AudioPlayer';
 
-const SynthesizeButton = ({ editorContent }) => {
+const SynthesizeButton = () => {
   const [audioSrc, setAudioSrc] = useState(null);
 
   const handleSynthesize = async () => {
     try {
-      const response = await fetch('/api/synthesize', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: editorContent }),
-      });
+      // Fetch synthesized audio from the server API route
+      const response = await fetch('/api/synthesize');
 
       if (!response.ok) {
         throw new Error('Failed to fetch audio');
       }
 
+      // Assuming the server responds with an audio file (e.g., mp3)
       const blob = await response.blob();
       const audioUrl = URL.createObjectURL(blob);
 
+      // Set the audio source for playback
       setAudioSrc(audioUrl);
     } catch (error) {
       console.error('Error fetching audio:', error.message);

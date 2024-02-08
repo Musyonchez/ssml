@@ -9,9 +9,19 @@ const polly = new PollyClient({
 });
 
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
+
+  const { text } = req.body;
+
+  if (!text) {
+    return res.status(400).json({ error: "Missing 'text' parameter in the request body" });
+  }
+
   const params = {
     OutputFormat: "mp3",
-    Text: '<speak>This is your i love you SSML content.</speak>',
+    Text: `<speak>${text}</speak>`,
     VoiceId: "Joanna",
     TextType: 'ssml',
   };
