@@ -1,8 +1,15 @@
 // pages/api/synthesize.js
 import { PollyClient, SynthesizeSpeechCommand } from "@aws-sdk/client-polly";
-import { fromIni } from "@aws-sdk/credential-provider-ini";
 
-const credentials = fromIni();
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load environment variables from .env
+
+const credentials = {
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+};
+
 const polly = new PollyClient({
   region: "us-west-2", // Adjust the region accordingly
   credentials,

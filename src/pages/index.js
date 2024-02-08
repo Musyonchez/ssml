@@ -32,7 +32,7 @@ const handleSynthesize = async () => {
 
 const index = () => {
   return (
-    <div>
+    <div className=" relative">
         <Navbar />
         <ReadPanel />
     </div>
