@@ -39,8 +39,9 @@ export default async function handler(req, res) {
 
     const audioBuffer = await streamToBuffer(response.AudioStream);
 
-    res.setHeader("Content-Type", "audio/mpeg");
-    res.send(audioBuffer);
+    res.setHeader("Content-Type", "audio/mp3"); // Fix content type
+    res.status(200).send(audioBuffer); // Add status code
+    
   } catch (error) {
     console.error("Error synthesizing speech:", error);
     res.status(500).json({ error: "Internal Server Error" });
