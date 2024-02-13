@@ -83,7 +83,7 @@ const AudioPlayer = ({ audioSrc, onLoadMore }) => {
   return (
     <div className="bg-gray-100 p-8 rounded-md shadow-lg">
     <audio id="audioPlayer" className="w-full">
-      <source src={audioSrc} type="audio/mpeg" />
+      <source src={audioSrc} type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
     <div className="flex items-center justify-between mt-4">
